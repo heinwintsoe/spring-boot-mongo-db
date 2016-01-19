@@ -23,13 +23,10 @@ public interface CategoryService {
 	@ServiceProxy(handlerClass = CategoryRepository.class, handlerMethod = "delete")
 	public void deleteCategory(Category category) throws ApplicationException;
 
-	@ServiceProxy(handlerClass = CategoryRepository.class, handlerMethod = "findAll")
+	@ServiceProxy(handlerClass = CategoryRepository.class, handlerMethod = "findAll", methodParamTypes = { Pageable.class })
 	public Page<Category> findCategories(Pageable pageable);
 
 	@ServiceProxy(handlerClass = CategoryRepository.class, handlerMethod = "findById", methodParamTypes = { ObjectId.class })
 	public Category findById(ObjectId id);
-
-	@ServiceProxy(handlerClass = CategoryRepository.class, handlerMethod = "findByParent")
-	public Page<Category> findByParent(PageRequest pageRequest, Category parent);
 
 }

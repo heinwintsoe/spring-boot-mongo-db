@@ -3,6 +3,8 @@ package me.hws.web.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import me.hws.core.entity.Category;
 import me.hws.core.exception.ApplicationException;
 import me.hws.core.repository.CategoryRepository;
@@ -10,6 +12,8 @@ import me.hws.core.service.CategoryService;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -65,10 +69,22 @@ public class CategoryController {
 	public String findCategory() {
 		Category result = categoryService.findById(new ObjectId("569ca5281a123bdd66f9903f"));
 		System.out.println(result);
-		
-		
 		System.out.println("Controller Ended");
 		return null;
+	}
+	
+	@RequestMapping(value="/find-categories", method=RequestMethod.GET)
+	public String findCategories() {
+//		PageRequest pageRequest = new PageRequest(0, 10);
+//		Page<Category> page = categoryService.findCategories(pageRequest);
+//		for(Category category : page.getContent()) {
+//			System.out.println(" Category Name: " + category.getName() 
+//					+ " Category Description: " + category.getDescription()
+//					+ " Category Id: " + category.getId());
+//		}
+		
+		String path = "category/find-categories";
+		return path;
 	}
 	
 }
